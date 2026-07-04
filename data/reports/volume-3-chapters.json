@@ -1,0 +1,74 @@
+[
+  {
+    "number": 1,
+    "title": "Subject and Predicate",
+    "start_index": 39,
+    "end_index": 124
+  },
+  {
+    "number": 2,
+    "title": "Active and Passive Voice",
+    "start_index": 124,
+    "end_index": 424
+  },
+  {
+    "number": 3,
+    "title": "Reported Speech",
+    "start_index": 424,
+    "end_index": 857
+  },
+  {
+    "number": 4,
+    "title": "Synthesis of Sentences",
+    "start_index": 857,
+    "end_index": 1045
+  },
+  {
+    "number": 5,
+    "title": "Punctuation",
+    "start_index": 1045,
+    "end_index": 1211
+  },
+  {
+    "number": 6,
+    "title": "Word formation and Usage",
+    "start_index": 1211,
+    "end_index": 1496
+  },
+  {
+    "number": 7,
+    "title": "Phrase and its Kinds",
+    "start_index": 1496,
+    "end_index": 1878
+  },
+  {
+    "number": 8,
+    "title": "Clause and its Kinds",
+    "start_index": 1878,
+    "end_index": 2229
+  },
+  {
+    "number": 9,
+    "title": "Narration and Paragraph Writing",
+    "start_index": 2229,
+    "end_index": 2429
+  },
+  {
+    "number": 10,
+    "title": "Reading Comprehension",
+    "start_index": 2429,
+    "end_index": 2546
+  },
+  {
+    "number": 11,
+    "title": "Story Writing",
+    "start_index": 2546,
+    "end_index": 2611
+  },
+  {
+    "number": 12,
+    "title": "Letter Writing",
+    "start_index": 2611,
+    "end_index": 2789
+  }
+]
