@@ -3,9 +3,9 @@ import { fetchPublicSettings } from '../lib/api';
 import { routeHref } from '../lib/routing';
 
 const slides = [
-  { src: '/assets/landing/library-study.webp', alt: 'Students reading and writing together in a sunlit library' },
-  { src: '/assets/landing/world-discovery.webp', alt: 'Students exploring geography together with an antique globe' },
-  { src: '/assets/landing/science-discovery.webp', alt: 'Students conducting a classroom science experiment together' },
+  { src: `${import.meta.env.BASE_URL}assets/landing/library-study.webp`, alt: 'Students reading and writing together in a sunlit library' },
+  { src: `${import.meta.env.BASE_URL}assets/landing/world-discovery.webp`, alt: 'Students exploring geography together with an antique globe' },
+  { src: `${import.meta.env.BASE_URL}assets/landing/science-discovery.webp`, alt: 'Students conducting a classroom science experiment together' },
 ];
 
 export function LandingPage() {
