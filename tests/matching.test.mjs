@@ -12,6 +12,24 @@ test('accepts case, whitespace, and punctuation variations', () => {
   assert.equal(answersMatch('  SHAHJAHAN had only one wife! ', 'Shahjahan had only one wife.'), true);
 });
 
+test('accepts standard contractions and their full forms interchangeably', () => {
+  assert.equal(answersMatch("Hide it, or else they'll steal it.", 'Hide it, or else they will steal it.'), true);
+  assert.equal(answersMatch("Follow him, or else he'll get away.", 'Follow him, or else he will get away.'), true);
+  assert.equal(answersMatch("I've finished.", 'I have finished.'), true);
+  assert.equal(answersMatch("We haven't finished.", 'We have not finished.'), true);
+  assert.equal(answersMatch("I'm ready and we're leaving.", 'I am ready and we are leaving.'), true);
+  assert.equal(answersMatch("You'd better leave.", 'You had better leave.'), true);
+  assert.equal(answersMatch("You'd enjoy it.", 'You would enjoy it.'), true);
+  assert.equal(answersMatch("She's ready.", 'She is ready.'), true);
+  assert.equal(answersMatch("She's finished.", 'She has finished.'), true);
+  assert.equal(answersMatch("I can't go unless he doesn't object.", 'I cannot go unless he does not object.'), true);
+  assert.equal(answersMatch("Let's begin.", 'Let us begin.'), true);
+});
+
+test('does not mistake a possessive apostrophe for an auxiliary contraction', () => {
+  assert.equal(answersMatch("John's book", 'John is book'), false);
+});
+
 test('accepts harmless word-order variation only when requested', () => {
   assert.equal(
     answersMatch(
