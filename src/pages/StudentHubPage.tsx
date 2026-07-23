@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { fetchPublicModules, fetchSession, logout, type PublicModule, type SessionUser } from '../lib/api';
 import { routeHref } from '../lib/routing';
 
 interface HubProgress { visited: string[]; completed: string[]; answered: string[]; lastChapter: string }
 
 const FALLBACK_MODULES: PublicModule[] = [
-  { code: 'A', title: 'English Grammar & Composition', description: '33 chapters � Interactive practice', status: 'published', routeSlug: 'grammar', sortOrder: 10 },
-  { code: 'B', title: 'Learning Module B', description: 'New lessons are being prepared', status: 'coming_soon', routeSlug: 'module-b', sortOrder: 20 },
+  { code: 'A', title: 'English Grammar & Composition', description: '33 chapters · Interactive practice', status: 'published', routeSlug: 'grammar', sortOrder: 10 },
+  { code: 'B', title: 'Questions & Answers', description: 'Mathematics · Science · Computer', status: 'published', routeSlug: 'module-b', sortOrder: 20 },
   { code: 'C', title: 'Learning Module C', description: 'New lessons are being prepared', status: 'coming_soon', routeSlug: 'module-c', sortOrder: 30 },
 ];
 
@@ -40,9 +40,10 @@ export function StudentHubPage({ progress }: { progress: HubProgress }) {
     <main className="hub-main">
       <section className="hub-library"><h1>Choose Your Learning Module</h1><p>Continue your journey through knowledge, practice, and discovery.</p><div className="module-orbits">
         {modules.map((module) => {
+          const isModuleB = module.code === 'B';
           const available = module.status === 'published';
           const href = module.code === 'A' ? routeHref({ page: 'index' }) : routeHref({ page: 'module', module: module.code });
-          return <a className={`module-orbit${available ? ' available' : ''}`} href={href} key={module.code}><span>{module.code}</span><strong>{module.title}</strong><small>{module.description}</small><em>{available ? 'Open Library' : 'View module'} &rarr;</em></a>;
+          return <a className={`module-orbit${available ? ' available' : ''}`} href={href} key={module.code}><span>{module.code}</span><strong>{module.title}</strong><small>{module.description}</small><em>{available ? (isModuleB ? 'Start Adventure' : 'Open Library') : 'View module'} &rarr;</em></a>;
         })}
       </div></section>
       <aside className="hub-progress" id="progress"><h2>Your Progress</h2><div className="progress-seal"><strong>{percent}%</strong><span>complete</span></div><dl><div><dt>Chapters explored</dt><dd>{explored} / 33</dd></div><div><dt>Chapters completed</dt><dd>{completed}</dd></div><div><dt>Questions answered</dt><dd>{progress.answered.length}</dd></div></dl><a href={routeHref({ page: 'chapter', volume: volume || 1, chapter: chapter || 1 })}>Continue where you left off &rarr;</a><blockquote>&ldquo;Language is the key that opens the door to knowledge.&rdquo;</blockquote></aside>

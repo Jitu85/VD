@@ -2,6 +2,7 @@
 import { Masthead } from '../components/Chrome';
 import { answersMatch } from '../lib/matching';
 import type { ProgressApi } from '../lib/progress';
+import { getQuestionProgressState, type QuizResult } from '../lib/quiz-progress';
 import { routeHref } from '../lib/routing';
 import type { Chapter, Exercise, Question } from '../types';
 
@@ -20,7 +21,7 @@ export function QuizPage({ volume, chapter, progressApi, requestedExercise, requ
   const [responses, setResponses] = useState<Record<string, string>>({});
   const [clozeResponses, setClozeResponses] = useState<Record<string, string[]>>({});
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const [results, setResults] = useState<Record<string, 'correct' | 'incorrect'>>({});
+  const [results, setResults] = useState<Record<string, QuizResult>>({});
   const exercise = chapter.exercises[exerciseIndex] ?? chapter.exercises[0];
   const questions = useMemo(() => flattenExercise(exercise), [exercise]);
   const safeQuestionIndex = Math.min(questionIndex, Math.max(0, questions.length - 1));
@@ -41,9 +42,10 @@ export function QuizPage({ volume, chapter, progressApi, requestedExercise, requ
         question.answer,
         { allowWordOrderVariation: question.inputType === 'textarea' },
       ));
-    setResults((current) => ({ ...current, [id]: correct ? 'correct' : 'incorrect' }));
+    const result: QuizResult = correct ? 'correct' : 'incorrect';
+    setResults((current) => ({ ...current, [id]: result }));
     if (shouldReveal || !correct) setRevealed((current) => ({ ...current, [id]: true }));
-    progressApi.markAnswered(id);
+    progressApi.markAnswered(id, result);
     if (exerciseIndex === chapter.exercises.length - 1 && safeQuestionIndex === questions.length - 1) progressApi.completeChapter(volume, chapter.number);
   };
 
@@ -67,6 +69,15 @@ export function QuizPage({ volume, chapter, progressApi, requestedExercise, requ
       {revealed[id] ? <div className={results[id] === 'correct' ? 'answer-reveal correct' : 'answer-reveal'} role="status"><span aria-hidden="true">❧</span><div><small>{results[id] === 'correct' ? 'Correct answer' : 'Review your answer'}</small><p>{question.answer ?? 'This item is awaiting review.'}</p></div></div> : null}
       <div className="quiz-navigation"><button type="button" onClick={previous} disabled={exerciseIndex === 0 && safeQuestionIndex === 0}>← Previous</button><button type="button" onClick={next} disabled={exerciseIndex === chapter.exercises.length - 1 && safeQuestionIndex === questions.length - 1}>Next →</button></div>
     </main>
-    <aside className="question-progress"><h2>Your Progress</h2><div className="question-dots">{questions.map((_, index) => { const itemId = `${volume}-${chapter.number}-${exercise.number}-${index}`; const state = index === safeQuestionIndex ? 'current' : progressApi.progress.answered.includes(itemId) ? 'answered' : ''; return <button type="button" className={state} key={index} onClick={() => goTo(exerciseIndex, index)} aria-label={`Question ${index + 1}`}>{index + 1}{state === 'answered' ? <small>✓</small> : null}</button>; })}</div><a href={routeHref({ page: 'chapter', volume, chapter: chapter.number })}>♧ <span>Finish later</span></a></aside>
+    <aside className="question-progress"><h2>Your Progress</h2><div className="question-dots">{questions.map((_, index) => {
+      const itemId = `${volume}-${chapter.number}-${exercise.number}-${index}`;
+      const result = results[itemId] ?? progressApi.progress.results[itemId];
+      const state = getQuestionProgressState({
+        current: index === safeQuestionIndex,
+        result,
+        answered: progressApi.progress.answered.includes(itemId),
+      });
+      return <button type="button" className={state.className} key={index} onClick={() => goTo(exerciseIndex, index)} aria-label={`Question ${index + 1}, ${state.status}`}>{index + 1}{state.marker ? <small aria-hidden="true">{state.marker}</small> : null}</button>;
+    })}</div><a href={routeHref({ page: 'chapter', volume, chapter: chapter.number })}>♧ <span>Finish later</span></a></aside>
   </div></div>;
 }

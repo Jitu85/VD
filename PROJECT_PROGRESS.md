@@ -31,29 +31,29 @@
 - Keep app-building notes here as the implementation progresses.
 - Add dated entries whenever an important decision or milestone is reached.
 
-## 2026-06-29 ó Volume I Extraction Resumed
+## 2026-06-29 ‚Äî Volume I Extraction Resumed
 
 - Re-read both governing specification files and confirmed the required staged delivery: extract, audit, and build Volume I before unlocking Volumes II and III.
 - Confirmed all three source Word files are readable, while deliberately ignoring unrelated files in both source locations.
 - Added a reusable XML-based DOCX extractor that preserves document order, list flags, bold, italic, underline, and the author's red-highlight formatting.
 - Extracted Volume I into `data/raw/volume-1.json`: 2,174 ordered elements and 12 chapter boundaries were detected.
 - Added an initial structuring/audit pass and generated `data/reports/volume-1-audit.md`.
-- Confirmed the source contains irregular layouts that require correction beyond automatic parsing: packed numbered answers, worked examples embedded inside exercise lists, sentence pairs split across list/plain paragraphs, and special handling for Chapters 10ñ12.
+- Confirmed the source contains irregular layouts that require correction beyond automatic parsing: packed numbered answers, worked examples embedded inside exercise lists, sentence pairs split across list/plain paragraphs, and special handling for Chapters 10‚Äì12.
 - Current work: resolving every item/answer mismatch and generating correct answers where the original book omits them, as explicitly requested by the user.
 
-## 2026-06-30 ó Volume I Approved; Phase II Started
+## 2026-06-30 ‚Äî Volume I Approved; Phase II Started
 
 - The user tested the Volume I application and approved proceeding to the next phase.
 - Volume I delivered 12 chapters, 27 exercises, and 674 interactive questions with no blank answers.
 - Phase II scope: formatting-aware extraction and audit of Volume II, repair of missing/incorrect answers, application integration, and unlocking Volume II.
 - Volume III remains locked pending approval of Volume II.
 
-## 2026-06-30 ó Phase II / Volume II Completed
+## 2026-06-30 ‚Äî Phase II / Volume II Completed
 
 - Extracted Volume II from Word XML: 2,961 ordered elements and 9 chapter boundaries.
 - Reconstructed 18 exercises containing 908 interactive questions.
 - Verified that every Volume II question has an answer; zero blank answers remain.
-- Corrected confirmed answer-key/extraction defects, including the split ì5-30 trainî answer, narrative text misread as answers, corrupted Exercise 14 answer rows, and an ìEnd of Partî print artifact.
+- Corrected confirmed answer-key/extraction defects, including the split ‚Äú5-30 train‚Äù answer, narrative text misread as answers, corrupted Exercise 14 answer rows, and an ‚ÄúEnd of Part‚Äù print artifact.
 - Unlocked Volume II in Page A; Volume III remains pending review.
 - Migrated progress storage so Volume I and Volume II chapter/quiz progress remain independent while preserving existing Volume I progress.
 - Added per-volume lazy loading: Page A now loads a 66.46 KB gzip application script; Volume I and Volume II content load only when opened.
@@ -61,7 +61,7 @@
 - Browser QA passed on desktop and mobile: Volume II index, chapter navigation, quiz entry, correct-answer checking, answer reveal, progress controls, breadcrumb, and console health.
 - Final Browser-plugin limitation: the in-app Browser runtime path was unavailable, so the documented Playwright fallback used installed Chrome. No application console errors remained.
 
-## 2026-07-01 ó Volume III and Full Application Completed
+## 2026-07-01 ‚Äî Volume III and Full Application Completed
 
 - Extracted and finalized all 12 Volume III chapters.
 - Reconstructed 28 exercises containing 1,031 interactive questions; every question has an answer and zero blanks remain.
@@ -80,7 +80,7 @@
 - The entry above completed the three-volume grammar module, not the entire Virtual Classroom specification.
 - The broader application still requires its public/authentication/content-hub/admin pages. Future entries will distinguish a completed page or module from completion of the full specification.
 
-## 2026-07-01 ó Public Landing Page Completed
+## 2026-07-01 ‚Äî Public Landing Page Completed
 
 - Added the public `Virtual Classroom` landing page at `#/`.
 - Moved the grammar Page A index to `#/grammar`.
@@ -92,7 +92,7 @@
 - Full tested path: landing ? Guest ? Page A ? Volume III chapter ? Back to Page A ? Back to Virtual Classroom.
 - Remaining specification work: registration, returning-user login, guest-session handling, admin login, post-login content hub, module placeholders, and admin dashboard/backend services.
 
-## 2026-07-01 ó Admin Login and Dashboard Frontend Completed
+## 2026-07-01 ‚Äî Admin Login and Dashboard Frontend Completed
 
 - Added a dedicated Administrator Access route at `#/admin-login` and protected dashboard route at `#/admin`.
 - Added demo-only administrator authentication using session storage, with an explicit warning that production authentication still requires a secure backend.
@@ -104,7 +104,7 @@
 - Desktop/mobile QA passed: route guard, demo login, filtering, guest toggle, module addition, sign-out, console health, and mobile overflow.
 - This milestone completes the admin frontend/demo workflow only. Production administration remains incomplete until server-side authentication, authorization, persistent database storage, audit logging, CSRF protection, rate limiting, and secure session management are implemented.
 
-## 2026-07-01 ó Student Login Frontend Completed
+## 2026-07-01 ‚Äî Student Login Frontend Completed
 
 - Added the student login route at `#/login` and connected the Landing Page Login action.
 - Added validated email/password fields, password visibility control, forgot-password status feedback, demo-account autofill, session state, and public-site return.
@@ -114,18 +114,18 @@
 - Desktop/mobile QA passed: landing navigation, recovery feedback, password visibility, demo login, grammar entry, console health, and mobile overflow.
 - This milestone completes only the Student Login frontend/demo workflow. Secure login remains dependent on the backend authentication phase.
 
-## 2026-07-01 ó Registration and OTP Frontend Completed
+## 2026-07-01 ‚Äî Registration and OTP Frontend Completed
 
 - Added `#/register` and connected Sign-Up from the landing page and Create Account from Student Login.
 - Implemented Full Name, Age, Class/Grade, School, Email, Password, Confirm Password, Phone Number, and a 197-option country selector.
-- Added validation for ages 4ñ18, email, password length/matching, phone format, required fields, and parental/guardian consent.
+- Added validation for ages 4‚Äì18, email, password length/matching, phone format, required fields, and parental/guardian consent.
 - Added the local Secret Code demonstration flow: request code, incorrect-code response, correct-code verification, and account-creation gating.
 - The demo code is `246810`; production email delivery remains explicitly deferred to the secure backend phase.
 - Successful registration creates local demo profile/session state and currently enters Page A; this destination will move to the Student Content Hub in the next milestone.
 - Saved the accepted reference at `design/concepts/student-registration-reference.png`.
 - Production build and desktop/mobile QA pass with no console errors or mobile overflow.
 
-## 2026-07-01 ó Student Content Hub Completed
+## 2026-07-01 ‚Äî Student Content Hub Completed
 
 - Added the post-login/guest hub at `#/hub`.
 - Login, successful registration, and enabled Guest access now converge on the hub.
@@ -136,7 +136,7 @@
 - Saved the user-approved reference at `design/concepts/student-hub-reference.png`.
 - Production build and desktop/mobile QA pass: all three entry paths, Module A navigation, personalisation, progress display, sign-out, console health, and mobile overflow.
 
-## 2026-07-01 ó Module B and C Placeholder Pages Completed
+## 2026-07-01 ‚Äî Module B and C Placeholder Pages Completed
 
 - Added reusable coming-soon pages at `#/module/b` and `#/module/c`.
 - Connected the Module B and Module C cards in the Student Content Hub to their respective pages.
@@ -146,7 +146,7 @@
 - Desktop/mobile QA passed: both module routes, hub return, Module A handoff, console health, and mobile overflow.
 - This completes Step 4 only. The broader application still requires production backend/API/database services, secure authentication and email OTP delivery, security hardening, deployment configuration, and final end-to-end acceptance testing.
 
-## 2026-07-01 ó Answer-Grading Accuracy Fix
+## 2026-07-01 ‚Äî Answer-Grading Accuracy Fix
 
 - Reviewed the user's submitted response for Volume I, Chapter 12, Exercise 12, Question 44.
 - Confirmed that the former 85% whole-passage similarity rule incorrectly marked the response as correct despite tense, spelling, infinitive, and meaning errors.
@@ -157,7 +157,7 @@
 - Automated tests and the production build pass.
 - Rendered QA on Question 44 confirms that the submitted passage now displays `Review Answer`, while the model answer displays `Correct`; no console warnings or errors were found.
 
-## 2026-07-04 ó Step 5 Backend API and PostgreSQL Foundation Completed
+## 2026-07-04 ‚Äî Step 5 Backend API and PostgreSQL Foundation Completed
 
 - Added a TypeScript/Express 5 REST API under `server/` with request IDs, JSON error contracts, origin allow-listing, security headers, bounded request bodies, connection pooling, and environment validation.
 - Added safe public endpoints for service health, Guest Login availability, and the content-module catalogue.
@@ -172,7 +172,7 @@
 - Rendered browser QA passed for Landing Page ? Guest Access ? Student Content Hub with correct module links and no console warnings/errors. The in-app browser accessibility snapshot API failed internally, so targeted DOM reads, screenshots, console inspection, and real link interaction were used instead.
 - Production database credentials and the permanent managed database remain deployment configuration tasks; no credentials were stored in the repository.
 
-## 2026-07-04 ó Step 6 Secure Authentication Completed
+## 2026-07-04 ‚Äî Step 6 Secure Authentication Completed
 
 - Finished the partially implemented authentication milestone and replaced the student and administrator demo-password flows with the real API.
 - Added two-step student registration: validated profile submission, Argon2id password hashing, cryptographically generated six-digit email codes, HMAC-hashed code storage, expiry/attempt limits, and transactional account activation.
@@ -188,7 +188,7 @@
 - Rendered browser QA passed on desktop and mobile: real registration, console-email OTP verification, personalised student hub, cross-role administrator guard, administrator login, responsive layout, and console health. The Browser snapshot method failed internally, so targeted DOM reads, screenshots, and real interactions were used.
 - Remaining after Step 6: live SMTP-provider acceptance, password recovery, persistent administrator CRUD/settings APIs, signed-in progress synchronization, deployment configuration, and final end-to-end acceptance testing.
 
-## 2026-07-04 ó Step 7 Persistent Administration Services Completed
+## 2026-07-04 ‚Äî Step 7 Persistent Administration Services Completed
 
 - Replaced all hard-coded administrator summary, student, module, and Guest Login data with role-protected PostgreSQL APIs.
 - Added a bounded administrator dashboard endpoint with server-side student search, account-status filtering, 25-row default limits, and opaque keyset cursors ordered by account creation time and ID.
@@ -203,3 +203,29 @@
 - Rendered QA passed for administrator login, real dashboard totals, student search, Guest Login persistence, module creation persistence, desktop layout, and a 390x844 mobile viewport with no horizontal overflow or console errors.
 - The in-app Browser verified the mutation flows but timed out after an API hot restart. The documented installed-Chrome Playwright fallback completed the student-ledger and mobile checks.
 - Remaining after Step 7: password recovery, administrator student-account actions, audit-log UI, signed-in progress synchronization, live SMTP-provider acceptance, deployment configuration, and final end-to-end acceptance testing.
+
+## 2026-07-23 ‚Äî Module B Questions & Answers Implemented
+
+- Replaced the Module B coming-soon page with the approved Discovery Adventure experience in the existing burgundy-and-gold visual system.
+- Added Mathematics, Science and Computer as separate subject sessions; Artificial Intelligence and Computer Applications are combined under Computer.
+- Added Easy, Medium and Hard difficulty trails without class-based divisions. Trigonometry, quadratic equations and circle theorems are confined to Hard, alongside advanced science and computing.
+- Added Practice Trail, Time Challenge, Daily Discovery and Examination modes. Feedback and teaching explanations appear immediately; speed points are awarded only in Time Challenge.
+- Added student-selectable five- or ten-question sessions, deterministic five-question daily sets, streaks, knowledge points, badges, saved local progress and a post-session review.
+- Screened all 577 source CSV rows and retained the original `Q&A.csv` unchanged. The launch bank contains 90 repaired and enriched questions: 10 for each subject/difficulty combination, with no visual-dependent records.
+- Added automated Module B integrity tests for balance, unique IDs/options, valid answer keys, visual independence and advanced-topic placement.
+- Published Module B in the database catalogue through migration `004_publish_questions_answers_module.sql`.
+- Expanded the homepage carousel from three to exactly five images with lightweight mathematics-discovery and computer-robotics scenes matching the established academy visual identity.
+- TypeScript checks, all web tests and the production frontend/API build pass.
+- Browser QA passed for Hub entry, subject/difficulty/mode/count selection, immediate right/wrong feedback, timer countdown, speed-only bonus scoring, complete examination flow, achievements and saved progress.
+
+## 2026-07-23 ‚Äî Module A Navigation and Progress Corrections
+
+- Corrected the `In This Chapter` opening state so every newly opened lesson begins with `Introduction` marked active instead of the previously hard-coded `Lesson & Examples`.
+- Replaced raw body-array numbering with a dedicated sequential list counter. Volume I Chapter 9 now starts at 1, and Chapter 10 starts at 1 without skipping 5.
+- Replaced the repeated Samuel Johnson quotation with twelve chapter-specific Volume I learning messages; later volumes receive a chapter-title-specific message.
+- Extended stored grammar progress to retain each checked answer‚Äôs `correct` or `incorrect` result.
+- Updated Test Yourself progress circles so correct answers are green with a check, incorrect answers are red with a cross, and older answered records without a saved result remain neutral.
+- Renamed Module B‚Äôs progress-bar class after browser QA exposed a collision with Module A‚Äôs `question-progress` panel. The full Module A right rail is visible again.
+- Added regression tests covering Chapter 9/10 numbering and correct/incorrect/legacy question-state mapping.
+- All 24 combined tests, TypeScript checks and the production frontend/API build pass.
+- Browser QA confirmed Chapter 9 numbering `1‚Äì3`, Chapter 10 numbering `1‚Äì10` without gaps, `Introduction` active in both chapters, distinct messages, and visible red/green quiz circles with accessible status labels.

@@ -6,6 +6,8 @@ const slides = [
   { src: `${import.meta.env.BASE_URL}assets/landing/library-study.webp`, alt: 'Students reading and writing together in a sunlit library' },
   { src: `${import.meta.env.BASE_URL}assets/landing/world-discovery.webp`, alt: 'Students exploring geography together with an antique globe' },
   { src: `${import.meta.env.BASE_URL}assets/landing/science-discovery.webp`, alt: 'Students conducting a classroom science experiment together' },
+  { src: `${import.meta.env.BASE_URL}assets/landing/mathematics-discovery.webp`, alt: 'Students solving a mathematics puzzle together with geometric models' },
+  { src: `${import.meta.env.BASE_URL}assets/landing/computer-discovery.webp`, alt: 'Students programming and testing a small educational robot together' },
 ];
 
 export function LandingPage() {

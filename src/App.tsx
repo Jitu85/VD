@@ -13,6 +13,7 @@ import { StudentLoginPage } from './pages/StudentLoginPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { StudentHubPage } from './pages/StudentHubPage';
 import { ModulePlaceholderPage } from './pages/ModulePlaceholderPage';
+import { ModuleBPage } from './pages/ModuleBPage';
 import type { Route, VolumeData } from './types';
 import './styles.css';
 
@@ -36,13 +37,14 @@ export default function App() {
   useEffect(() => {
     document.title = route.page === 'landing' ? 'Virtual Classroom'
       : route.page === 'hub' ? 'My Learning — Virtual Classroom'
+      : route.page === 'module' && route.module === 'B' ? 'Questions & Answers — Virtual Classroom'
       : route.page === 'module' ? `Module ${route.module} — Virtual Classroom`
       : route.page === 'student-login' ? 'Student Login — Virtual Classroom'
       : route.page === 'register' ? 'Create Account — Virtual Classroom'
       : route.page === 'admin-login' ? 'Administrator Access — Virtual Classroom'
       : route.page === 'admin' ? 'Administration — Virtual Classroom'
       : 'Modern English Grammar & Composition';
-  }, [route.page]);
+  }, [route]);
 
   useEffect(() => {
     if (route.page === 'landing' || route.page === 'hub' || route.page === 'module' || route.page === 'index' || route.page === 'student-login' || route.page === 'register' || route.page === 'admin-login' || route.page === 'admin') {
@@ -59,6 +61,7 @@ export default function App() {
 
   if (route.page === 'landing') return <LandingPage />;
   if (route.page === 'hub') return <StudentHubPage progress={progressApi.progress} />;
+  if (route.page === 'module' && route.module === 'B') return <ModuleBPage />;
   if (route.page === 'module') return <ModulePlaceholderPage module={route.module} />;
   if (route.page === 'student-login') return <StudentLoginPage />;
   if (route.page === 'register') return <RegistrationPage />;
